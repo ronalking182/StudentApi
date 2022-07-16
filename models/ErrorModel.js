@@ -5,5 +5,5 @@ class ErrorModel extends Error{
     }
 }
 
-export default ErrorModel
-// module.exports = ErrorModel;
+
+module.exports = ErrorModel;

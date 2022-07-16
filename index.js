@@ -1,8 +1,9 @@
-import ErrorModel from './models/ErrorModel.js';
+const ErrorModel =  require('./models/ErrorModel');
+const StudentRoute =  require('./Routes/StudentRoute');
 
-import express from 'express';
-import bodyParser from 'body-parser'
-import mongoose from 'mongoose'
+const express =  require('express');
+const bodyParser =  require('body-parser')
+const mongoose =  require('mongoose')
 
 
 const app = express();
@@ -27,7 +28,7 @@ ROUTE handlers
 ==============================================
 */
 
-
+app.use('/api/StudentRoute', StudentRoute)
 
 /*
 ==============================================
@@ -57,10 +58,11 @@ Type: server error
 
 
 
-mongoose.connect( "mongodb+srv://students.pjmsm.mongodb.net/myFirstDatabase" ).
+mongoose.connect( "mongodb+srv://Students:Students123@students.pjmsm.mongodb.net/?retryWrites=true&w=majority",
+).
 then(app.listen(process.env.PORT || 5050, ()=>{
-    console.log('listening on port 5050')
-})).catch(err => console.log(err))
+    console.log('listening on port 5050 and connected to server')
+})).catch(err => console.log("could not connect to server"))
 
 
 

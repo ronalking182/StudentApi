@@ -1,5 +1,6 @@
-const studentController =   require('../Controllers/StudentController')
+const studentController =   require('../controllers/StudentController')
 const { check } = require('express-validator');
+const fileUpload = require('../middleware/FileUpload')
 
 
 const  express = require('express');
@@ -16,7 +17,7 @@ StudentRoute.get('/student/:id', studentController.getStudentById)
 
 
 
-StudentRoute.post('/create', [
+StudentRoute.post('/create', fileUpload.single('image'), [
     check('name', 'name is required').not().isEmpty(),
     check('age', 'age is required').not().isEmpty(),
     check('address', 'address is required').not().isEmpty()

@@ -10,7 +10,6 @@ Controller Type: find all students
 */
 const displayStudents = async (req, res, next) => {
     const students = await Student.find()
-    console.log(students)
         res.status(200).json(students)
 }
 
@@ -39,8 +38,8 @@ Controller Type: create student
 ==============================================
 */
 const CreateStudent = async (req, res, next) => {
-    const {name, age, address} = req.body
-    //request error handling
+    const {name, age, address, image} = req.body
+    //request error handling with express-validator
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         const error = new ErrorModel("Invalid Input, entered data is incorrect", 422)
@@ -49,7 +48,8 @@ const CreateStudent = async (req, res, next) => {
     let student = new Student({
         name,
         age,
-        address
+        address,
+        image
     });
 
    const result = await student.save()
@@ -67,13 +67,16 @@ Controller Type: update student
 ==============================================
 */
 const UpDateStudent = async (req, res, next) => {
+    const {name, age, address} = req.body
     const studentsId = req.params.id
+
+    //request error handling with express-validator
     const errors = validationResult(req);
     if(errors.isEmpty()){
         const error = new ErrorModel("Please update all student filed properly ", 422)
         throw error
     }
-    const {name, age, address} = req.body
+
    let studentToUpdate
    try{
          studentToUpdate = await Student.findById(studentsId)

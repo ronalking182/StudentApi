@@ -1,5 +1,5 @@
 const ErrorModel =  require('./models/ErrorModel');
-const StudentRoute =  require('./Routes/StudentRoute');
+const StudentRoute =  require('./routes/StudentRoute');
 
 const express =  require('express');
 const bodyParser =  require('body-parser')

@@ -1,5 +1,7 @@
 const ErrorModel =  require('./models/ErrorModel');
 const StudentRoute =  require('./routes/StudentRoute');
+const UserRouter = require('./routes/userRoutes');
+require('dotenv').config()
 
 const express =  require('express');
 const bodyParser =  require('body-parser')
@@ -29,6 +31,7 @@ ROUTE handlers
 */
 
 app.use('/api/StudentRoute', StudentRoute)
+app.use('/api', UserRouter)
 
 /*
 ==============================================
@@ -60,7 +63,7 @@ Type: server error
 
 mongoose.connect( "mongodb+srv://Students:Students123@students.pjmsm.mongodb.net/?retryWrites=true&w=majority",
 ).
-then(app.listen(process.env.PORT || 5050, ()=>{
+then(app.listen(process.env.PORT,  ()=>{
     console.log('listening on port 5050 and connected to server')
 })).catch(err => console.log("could not connect to server"))
 

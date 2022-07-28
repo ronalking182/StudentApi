@@ -12,4 +12,9 @@ UserRouter.post('/signup', [
     check('password').isLength({min:6})
 ], UserController.SignUpUser)
 
+UserRouter.post('/login', [
+    check('name', 'name is required').not().isEmpty(),
+    check('email','email is required').normalizeEmail().isEmail(),
+], UserController.Login)
+
 module.exports = UserRouter
